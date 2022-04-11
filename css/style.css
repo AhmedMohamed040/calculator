@@ -401,8 +401,8 @@ body {
 @media screen and (max-width: 500px) {
  
   #app #calculator {
-    width: 98vw;
-    height: 98vh;
+    width: 98vw !important;
+    height: 98vh !important;
 }
 }
 *::-moz-selection {
@@ -418,7 +418,7 @@ body {
 }
 @media screen and (max-width: 550px) {
     #app #calculator {
-        width: 98vw;
-        height: 90vh;
+        width: 98vw !important;
+        height: 90vh !important;
     }
 }
