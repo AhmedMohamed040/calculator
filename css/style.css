@@ -1,0 +1,424 @@
+:root {
+    --bg-color: #a987a8;
+    --btn-color: #693b69;
+    --do-color: #511f52;
+    --cel-color: #1d2625;
+    --w-color: #ffffff;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  background: var(--bg-color);
+  overflow: hidden;
+}
+* {
+  box-sizing: border-box;
+}
+#app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+}
+#app #calculator {
+  opacity: 0;
+  -webkit-animation: 1s bounceIn;
+  animation: 1s bounceIn;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  border-radius: 8px;
+  color: var(--w-color);
+  box-shadow: 10px 10px 50px rgba(0, 0, 0, 0.5);
+  margin: auto;
+  height: 540px;
+  margin: 0 25px;
+  width: 300px;
+  background: var(--cel-color);
+}
+#app #calculator .screen-container {
+  width: 100%;
+  height: 38%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  justify-content: center;
+  text-align: right;
+}
+#app #calculator .screen-container .calculation,
+#app #calculator .screen-container .result {
+  width: 100%;
+  height: 50%;
+  padding-right: 15px;
+}
+#app #calculator .screen-container .result {
+  display: flex;
+  align-items: flex-end;
+  color: var(--btn-color);
+  justify-content: flex-end;
+}
+#app #calculator .screen-container .result .number {
+  font-size: 35px;
+  font-weight: 800;
+}
+#app #calculator .btn-container {
+  width: 100%;
+  height: 62%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+#app #calculator .btn-container .oper-container {
+  z-index: 10;
+  opacity: 0;
+  -webkit-animation: 1s bounceIn;
+  animation: 1s bounceIn;
+  -webkit-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  position: absolute;
+  width: 50px;
+  left: -25px;
+  box-shadow: 10px 10px 50px rgba(0, 0, 0, 0.5);
+  top: -100px;
+}
+#app #calculator .btn-container .oper-container .btn {
+  position: static;
+  width: 50px;
+  height: 50px;
+  color: var(--btn-color);
+  background: var(--w-color);
+  display: flex;
+  cursor: pointer;
+}
+#app #calculator .btn-container .oper-container .btn .number {
+  margin: auto;
+}
+#app #calculator .btn-container .oper-container .btn#clear.animate {
+  -webkit-animation: fade 0.12s ease-in-out;
+  animation: fade 0.12s ease-in-out;
+  animation-direction: reverse;
+}
+#app #calculator .btn-container .oper-container .btn#clear {
+  cursor: pointer;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  background: var(--do-color);
+  border-radius: 8px 0px 0 0;
+  font-size: 16px;
+  box-shadow: 10px 10px 50px rgba(0, 0, 0, 0.5);
+}
+#app #calculator .btn-container .oper-container .btn#clear .number {
+  margin: auto;
+  color:var(--w-color);
+}
+#app #calculator .btn-container .row {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 25%;
+}
+#app #calculator .btn-container .row .btn {
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  border: 0.5px solid var(--do-color);
+  background: var(--btn-color);
+}
+#app #calculator .btn-container .row .btn .number {
+  opacity: 0;
+  -webkit-animation: 1s fadeIn;
+  animation: 1s fadeIn;
+  -webkit-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  margin: auto;
+}
+#app #calculator .btn-container .row .btn:nth-child(1) {
+  border-left: none;
+}
+#app #calculator .btn-container .row .btn:nth-child(3) {
+  border-right: none;
+}
+#app #calculator .btn-container .row .btn.animate {
+  -webkit-animation: fade 0.12s ease-in-out;
+  animation: fade 0.12s ease-in-out;
+}
+#app #calculator .btn-container .row .btn#result {
+  position: absolute;
+  right: -12px;
+  bottom: -12px;
+  width: calc(33% * 1.25);
+  height: calc(100% * 1.25);
+  background: var(--do-color);
+  border-bottom-right-radius: 8px;
+  border: 0.5px rgba(0, 0, 0, 0.0001);
+}
+#app #calculator .btn-container .row .btn#result:not(.resetappearanim) {
+  opacity: 0;
+  -webkit-animation: 1s bounceIn;
+  animation: 1s bounceIn;
+  -webkit-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+#app #calculator .btn-container .row .btn#result.animate {
+  -webkit-animation: fade 0.12s ease-in-out;
+  animation: fade 0.12s ease-in-out;
+  animation-direction: reverse;
+}
+#app #calculator .btn-container .row .btn#dot {
+  border-bottom-left-radius: 8px;
+}
+#app #calculator .btn-container .row:last-child .btn {
+  border-bottom: none;
+}
+#app #calculator .btn-container .btn.operations.animate {
+  -webkit-animation: fadeThird 0.12s ease-in-out;
+  animation: fadeThird 0.12s ease-in-out;
+  animation-direction: reverse;
+}
+#app #calculator .btn-container .btn.operations.divide {
+  left: calc(33% - 25px);
+  top: calc(25% - 25px);
+}
+#app #calculator .btn-container .btn.operations.multiplication {
+  left: calc(66% - 25px);
+  top: calc(25% - 25px);
+}
+#app #calculator .btn-container .btn.operations.plus {
+  left: calc(66% - 25px);
+  top: calc(50% - 25px);
+}
+#app #calculator .btn-container .btn.operations.less {
+  left: calc(33% - 25px);
+  top: calc(50% - 25px);
+  border-radius: 0 0 8px 0;
+}
+@-webkit-keyframes fade {
+  from {
+    background: var(--btn-color);
+  }
+  to {
+    background: var(--bg-color);
+  }
+}
+@keyframes fade {
+  from {
+    background: var(--btn-color);
+  }
+  to {
+    background: var(--bg-color);
+  }
+}
+@-webkit-keyframes fadeThird {
+  from {
+    background: var(--w-color);
+  }
+  to {
+    background: var(--cel-color);
+  }
+}
+@keyframes fadeThird {
+  from {
+    background: var(--w-color);
+  }
+  to {
+    background: var(--cel-color);
+  }
+}
+@-webkit-keyframes bounceIn {
+  from,
+  20%,
+  40%,
+  60%,
+  80%,
+  to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+  20% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1);
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.9, 0.9, 0.9);
+    transform: scale3d(0.9, 0.9, 0.9);
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: scale3d(1.03, 1.03, 1.03);
+    transform: scale3d(1.03, 1.03, 1.03);
+  }
+  80% {
+    -webkit-transform: scale3d(0.97, 0.97, 0.97);
+    transform: scale3d(0.97, 0.97, 0.97);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes bounceIn {
+  from,
+  20%,
+  40%,
+  60%,
+  80%,
+  to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+  20% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1);
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.9, 0.9, 0.9);
+    transform: scale3d(0.9, 0.9, 0.9);
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: scale3d(1.03, 1.03, 1.03);
+    transform: scale3d(1.03, 1.03, 1.03);
+  }
+  80% {
+    -webkit-transform: scale3d(0.97, 0.97, 0.97);
+    transform: scale3d(0.97, 0.97, 0.97);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+@-webkit-keyframes bounce {
+  from,
+  20%,
+  40%,
+  60%,
+  80%,
+  to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  20% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1);
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.9, 0.9, 0.9);
+    transform: scale3d(0.9, 0.9, 0.9);
+  }
+  60% {
+    -webkit-transform: scale3d(1.03, 1.03, 1.03);
+    transform: scale3d(1.03, 1.03, 1.03);
+  }
+  80% {
+    -webkit-transform: scale3d(0.97, 0.97, 0.97);
+    transform: scale3d(0.97, 0.97, 0.97);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes bounce {
+  from,
+  20%,
+  40%,
+  60%,
+  80%,
+  to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  20% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1);
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.9, 0.9, 0.9);
+    transform: scale3d(0.9, 0.9, 0.9);
+  }
+  60% {
+    -webkit-transform: scale3d(1.03, 1.03, 1.03);
+    transform: scale3d(1.03, 1.03, 1.03);
+  }
+  80% {
+    -webkit-transform: scale3d(0.97, 0.97, 0.97);
+    transform: scale3d(0.97, 0.97, 0.97);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.slide-fade-enter-active {
+  transition: all 0.3s ease;
+}
+.slide-fade-enter,
+.slide-fade-leave-to {
+  -webkit-transform: translateX(10px);
+  transform: translateX(10px);
+  opacity: 0;
+}
+*:focus {
+  outline: none;
+}
+@media screen and (max-width: 500px) {
+ 
+  #app #calculator {
+    width: 98vw;
+    height: 98vh;
+}
+}
+*::-moz-selection {
+  background: var(--bg-color);
+  color: var(--w-color);
+}
+*::selection {
+  background: var(--bg-color);
+  color: var(--w-color);
+}
+[v-cloak] {
+  display: none;
+}
+@media screen and (max-width: 550px) {
+    #app #calculator {
+        width: 98vw;
+        height: 90vh;
+    }
+}
